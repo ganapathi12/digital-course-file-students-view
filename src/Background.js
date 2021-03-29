@@ -26,7 +26,6 @@ export default function Background() {
           Requested FolderID: {topicId}
         </h1>
         <Timer />
-        <Optin />
         <Preloader />
       </div>
     </div>
