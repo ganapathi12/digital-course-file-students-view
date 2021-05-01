@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import Preloader from "./components/Preloader/Preloader";
-import Timer from "./components/Countdown/Timer";
-import Optin from "./components/Optin/Optin";
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,8 +22,6 @@ export default function Background() {
           <br />
           Requested FolderID: {topicId}
         </h1>
-        <Timer />
-        <Preloader />
       </div>
     </div>
   );

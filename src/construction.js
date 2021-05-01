@@ -26,8 +26,3 @@ export default function Construction() {
   )
 }
 
-// function Topic() {
-//   let { topicId } = useParams()
-// //   return <h3>Requested Folder ID: {topicId}</h3>
-// <Background/>
-// }

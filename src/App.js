@@ -1,32 +1,24 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from 'react-router-dom'
-import Home from './Home'
-import About from './About'
-import Construction from './construction'
+import { useState } from "react";
+import "./App.css";
+import Main from "./components/main/Main";
+import Navbar from "./components/navbar/Navbar";
+import Sidebar from "./components/sidebar/Sidebar";
 
-export default function App() {
+const App = () => {
+  const [sidebarOpen, setsidebarOpen] = useState(false);
+  const openSidebar = () => {
+    setsidebarOpen(true);
+  };
+  const closeSidebar = () => {
+    setsidebarOpen(false);
+  };
   return (
-    <Router>
-      <div>
-        <Switch>
-          <Route path='/about'>
-            <About />
-          </Route>
-          <Route path='/folders'>
-            <Construction />
-          </Route>
-          <Route path='/'>
-            <Home />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  )
-}
+    <div className="container">
+      <Navbar sidebarOpen={sidebarOpen} openSidebar={openSidebar} />
+      <Main />
+      <Sidebar sidebarOpen={sidebarOpen} closeSidebar={closeSidebar} />
+    </div>
+  );
+};
+
+export default App;
