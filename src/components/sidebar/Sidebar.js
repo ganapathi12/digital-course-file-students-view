@@ -12,6 +12,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar ,topicId,fileid}) => {
     fileid,
     topicId
   )
+  console.log(childFiles)
 
   if (childFiles.length == 0) {
     return (
@@ -55,7 +56,7 @@ const Sidebar = ({ sidebarOpen, closeSidebar ,topicId,fileid}) => {
             {childFiles.map((childFile) => (
               <div className='sidebar__link' key={childFile.uniqueid}>
                 <i className='fa fa-archive'></i>
-                <a href='#'>{childFile.name}</a>
+                <a href={childFile.url}>{childFile.name}</a>
               </div>
             ))}
           </div>

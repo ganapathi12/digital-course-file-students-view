@@ -1,7 +1,10 @@
 import "./Main.css";
 import hello from "../../assets/hello.svg";
+import FileViewer from 'react-file-viewer';
 
 const Main = () => {
+  const file = 'https://images.app.goo.gl/hsQYbHZFWNbcL3R8A'
+const type = 'png'
   return (
     <main>
       <div className="main__container">
@@ -60,6 +63,11 @@ const Main = () => {
           </div>
         </div>
         {/* <!-- MAIN CARDS ENDS HERE --> */}
+
+        {/* <FileViewer
+        fileType={type}
+        filePath={file}
+        /> */}
 
         
       </div>
