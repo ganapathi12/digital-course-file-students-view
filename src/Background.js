@@ -11,7 +11,7 @@ import {
 
 
 export default function Background() {
-    let { topicId } = useParams()
+    let { topicId,fileid } = useParams()
     return (
     <div className="App">
       <div className="container">
@@ -21,6 +21,7 @@ export default function Background() {
           Under Construction Coming Soon...
           <br />
           Requested FolderID: {topicId}
+          Requested fileid: {fileid}
         </h1>
       </div>
     </div>

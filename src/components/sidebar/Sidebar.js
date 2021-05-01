@@ -6,10 +6,11 @@ import { database } from '../../fire'
 import Loader from 'react-loader-spinner'
 import { useState, useReducer, useEffect } from 'react'
 
-const Sidebar = ({ sidebarOpen, closeSidebar }) => {
+const Sidebar = ({ sidebarOpen, closeSidebar ,topicId,fileid}) => {
+  
   const { childFiles } = useFolder(
-    'jykzOefu3XBgzYBE3afz',
-    'KSeEJZFcdJgDT4hcqn1JxksYJzM2'
+    fileid,
+    topicId
   )
 
   if (childFiles.length == 0) {
@@ -53,7 +54,6 @@ const Sidebar = ({ sidebarOpen, closeSidebar }) => {
           <div>
             {childFiles.map((childFile) => (
               <div className='sidebar__link' key={childFile.uniqueid}>
-                {console.log(childFile.uniqueid)}
                 <i className='fa fa-archive'></i>
                 <a href='#'>{childFile.name}</a>
               </div>
