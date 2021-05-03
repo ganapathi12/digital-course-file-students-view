@@ -8,8 +8,7 @@ import {
   useParams,
 } from 'react-router-dom'
 import Background from './Background'
-import App from "./App";
-
+import App from './App'
 
 export default function Construction() {
   let match = useRouteMatch()
@@ -18,7 +17,7 @@ export default function Construction() {
     <div>
       <Switch>
         <Route path={`${match.path}/:topicId/:fileid`}>
-          <App/>
+          <App />
         </Route>
         <Route path={match.path}>
           <h3>No folderId is provided.</h3>
@@ -27,4 +26,3 @@ export default function Construction() {
     </div>
   )
 }
-
