@@ -1,13 +1,5 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-  useParams,
-} from 'react-router-dom'
-import Background from './Background'
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
 import App from './App'
 
 export default function Construction() {
