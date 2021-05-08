@@ -8,11 +8,15 @@ import { storage, database } from './fire.js'
 import { v4 as uuidV4 } from 'uuid'
 import { ProgressBar, Toast } from 'react-bootstrap'
 
-
-export default function UplodeAssg({topicId, sid}) {
+let b=true;
+export default function UplodeAssg({topicId, sid, sendDataToParent}) {
  const [uploadingFiles, setUploadingFiles] = React.useState([]) 
-
-
+ console.log("inside uplode:");
+ 
+ function change(){
+  b=!b;
+  sendDataToParent(b)
+ }
  function changeHandler(e){
   const file = e.target.files[0]
     if (topicId == null || file == null) return
@@ -94,7 +98,7 @@ export default function UplodeAssg({topicId, sid}) {
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
-            control={<Checkbox color="secondary" name="saveCard" value="yes" />}
+            control={<Checkbox onChange={change} color="secondary" name="saveCard" value="yes" required />}
             label="I have not copied my work"
           />
         </Grid>
