@@ -10,21 +10,19 @@ import {
 // import Home from './Home'
 // import About from './About'
 import Construction from './Construction'
+import Path from './Path1'
 
 export default function Routes() {
   return (
     <Router>
       <div>
         <Switch>
-          {/* <Route path='/about'>
-            <About />
-          </Route> */}
           <Route path='/folders'>
             <Construction />
           </Route>
-          {/* <Route path='/'>
-            <Home />
-          </Route> */}
+          <Route path='/assignment'>
+            <Path />
+          </Route> 
         </Switch>
       </div>
     </Router>
