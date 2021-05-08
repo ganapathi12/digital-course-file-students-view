@@ -22,6 +22,9 @@ import "firebase/storage"
   export const database = {
     folders : firestore.collection('folders'),
     files : firestore.collection('files'),
+    a_folders :  firestore.collection('a_folders'),
+    a_files : firestore.collection('a_files'),
+    s_details : firestore.collection('s_details'),
     getTime : firebase.firestore.FieldValue.serverTimestamp,
     formatDoc : doc => { return {id : doc.id, ...doc.data()} },
   }
