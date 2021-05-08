@@ -19,6 +19,7 @@ import { database } from './fire.js'
 
 
 const id = uuidV4()
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -74,22 +75,48 @@ export default function Assignment() {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = ['Student Details', 'Uploding details'];
   const [docname, setdocname] = React.useState(""); 
+  const [docdue, setdocdue] = React.useState("");
+  const [docdes, setdocdes] = React.useState("");
+  let [vaild, setvaild] = React.useState(true)
+  
+  const sendDataToParent = (index) => { 
+    console.log(index);
+    setvaild(index);
+  };
+
+
+
   let {topicId} = useParams()
   const docRef = database.a_folders.doc(topicId)
-  docRef.get().then((doc) => {    if (doc.exists) {        setdocname(doc.data().name);    } else {        console.log("No such document!");    }}).catch((error) => {    console.log("Error getting document:", error);});
+  docRef.get().then((doc) => {    
+    if (doc.exists) {        
+      setdocname(doc.data().name); 
+      setdocdue(doc.data().date);
+      setdocdes(doc.data().desp); } 
+      else {        
+        console.log("No such document!");    
+      }}).catch((error) => {
+            console.log("Error getting document:", error);
+          });
   console.log(docname)
+  
+
   function getStepContent(step) {
+    
     switch (step) {
       case 0:
-        return <Student topicId={topicId} id={id}/>;
+        return <Student topicId={topicId} id={id} sendDataToParent={sendDataToParent} />;
       case 1:
-        return <UploadAssg topicId={topicId} sid={id}/>;
+        return <UploadAssg topicId={topicId} sid={id} sendDataToParent={sendDataToParent}/>;
       default:
         throw new Error('Unknown step');
     }
   }
+
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+    setvaild(true)
   };
 
   const handleBack = () => {
@@ -111,6 +138,12 @@ export default function Assignment() {
           <Typography component="h1" variant="h4" align="center">
             Assignment Portal for {docname}
           </Typography>
+          <Typography component="h1" variant="h6" align="center">
+            Due: {docdue}
+          </Typography>
+          <Typography component="h1" variant="h6" align="center">
+            Description: {docdes}
+          </Typography>
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label) => (
               <Step key={label}>
@@ -130,6 +163,7 @@ export default function Assignment() {
               </React.Fragment>
             ) : (
               <React.Fragment>
+                
                 {getStepContent(activeStep)}
                 <div className={classes.buttons}>
                   {activeStep !== 0 && (
@@ -137,11 +171,14 @@ export default function Assignment() {
                       Back
                     </Button>
                   )}
+
+                  {console.log(vaild)}
                   <Button
                     variant="contained"
                     color="primary"
                     onClick={handleNext}
                     className={classes.button}
+                    disabled = {vaild}
                   >
                     {activeStep === steps.length - 1 ? 'Submit Assignment' : 'Next'}
                   </Button>

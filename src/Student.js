@@ -45,43 +45,53 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Student( {topicId, id}) {
+export default function Student( {topicId, id, sendDataToParent}) {
 
  const [fname, setfname] = React.useState("");
  const [lname, setlname] = React.useState("");
  const [rollno, setrollno] = React.useState("");
  const [dept, setdept] = React.useState("");
  const [sec, setsec] = React.useState("");
-
  const classes = useStyles();
-
 
   function handleit(){
     try {
-      database.s_details
-        .where('sid', '==', id)
-        .get()
-        .then((existingFiles) => {
-          const existingFile = existingFiles.docs[0]
-          if (existingFile) {
-            existingFile.ref.update({ fname:fname, lname:lname, rollno:rollno, dept:dept, sec:sec})
-          } else {
-            database.s_details.add({
-              sid: id,
-              fname:fname, 
-              lname:lname, 
-              rollno:rollno, 
-              dept:dept, 
-              sec:sec
+      if(fname!=="" && lname!=="" && rollno!=="" && dept!=="" && sec!==""){
+          database.s_details
+            .where('sid', '==', id)
+            .get()
+            .then((existingFiles) => {
+              const existingFile = existingFiles.docs[0]
+              if (existingFile) {
+                existingFile.ref.update({ fname:fname, lname:lname, rollno:rollno, dept:dept, sec:sec})
+              } else {
+                database.s_details.add({
+                  sid: id,
+                  assgid: topicId,
+                  fname:fname, 
+                  lname:lname, 
+                  rollno:rollno, 
+                  dept:dept, 
+                  sec:sec
+                })
+              }
             })
+            alert("Details Added")
+            sendDataToParent(false)
           }
-        })
-        alert("Details Added")
+          else{
+            alert("All the details required") 
+          }
       
     } catch (error) {
+      console.log(error)
       alert("Error Please try again")
     }
-  
+    setfname("");
+    setlname("");
+    setrollno("");
+    setdept("");
+    setsec("");
   }
   return (
     <React.Fragment>
@@ -138,13 +148,23 @@ export default function Student( {topicId, id}) {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="Section" fullWidth value={sec}
-            onChange={(e) => setsec(e.target.value)} />
+          <TextField id="state" 
+          name="state" 
+          label="Section" 
+          fullWidth value={sec}
+          required
+          onChange={(e) => setsec(e.target.value)} />
         </Grid>
       </Grid>
       <br></br>
       <p></p>
-      <Button variant="contained" className={classes.button} color="primary" onClick={handleit}> Update Details</Button>
+      <Button variant="contained" 
+      disabled={fname==="" || lname==="" || rollno==="" || dept==="" || sec===""} 
+      className={classes.button} 
+      color="primary" 
+      onClick={handleit}> 
+      Update Details
+      </Button>
     </React.Fragment>
   );
 }

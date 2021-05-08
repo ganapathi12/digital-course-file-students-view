@@ -1,7 +1,5 @@
-import { useState,useReducer, useEffect } from "react";
+import { useReducer, useEffect } from "react";
 import { database } from '../fire'
-import firebase from 'firebase'
-import Loader from "react-loader-spinner";
 
 
 export function useFolder( folderId = null, userid= null) {
