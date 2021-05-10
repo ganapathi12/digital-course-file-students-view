@@ -1,4 +1,5 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -8,9 +9,51 @@ import { storage, database } from './fire.js'
 import { v4 as uuidV4 } from 'uuid'
 import { ProgressBar, Toast } from 'react-bootstrap'
 
+
+
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    position: 'relative',
+  },
+  layout: {
+    width: 'auto',
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 600,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  paper: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },
+  },
+  stepper: {
+    padding: theme.spacing(3, 0, 5),
+  },
+  buttons: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  button: {
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+  },
+}));
+
+
+
 let b=true;
 export default function UplodeAssg({topicId, sid, sendDataToParent}) {
  const [uploadingFiles, setUploadingFiles] = React.useState([]) 
+ const classes = useStyles();
  console.log("inside uplode:");
  
  function change(){
@@ -94,7 +137,7 @@ export default function UplodeAssg({topicId, sid, sendDataToParent}) {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-            <input type="file" name="file" onChange={changeHandler} />
+            <input className={classes.button} type="file" name="file" onChange={changeHandler} />
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
