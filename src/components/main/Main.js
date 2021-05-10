@@ -1,10 +1,12 @@
 import "./Main.css";
 import hello from "../../assets/hello.svg";
 import FileViewer from 'react-file-viewer';
+import { useFolder2 } from '../../hooks/useFolder2'
+import React, { useState } from 'react'
 
-const Main = () => {
-  const file = 'https://images.app.goo.gl/hsQYbHZFWNbcL3R8A'
-const type = 'png'
+
+const Main = ({childFile}) => {
+  //console.log(childFile);
   return (
     <main>
       <div className="main__container">

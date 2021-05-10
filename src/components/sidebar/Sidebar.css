@@ -67,6 +67,16 @@
   font-weight: 700;
 }
 
+.sidebar__link > button {
+  text-decoration: none;
+  color: #a5aaad;
+  font-weight: 800;
+  background-color: black;
+  height: fit-content;
+  width: 200px;
+  font-size: 15px;
+}
+
 .sidebar__link > i {
   margin-right: 10px;
   font-size: 18px;

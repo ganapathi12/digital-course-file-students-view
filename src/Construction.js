@@ -8,6 +8,9 @@ export default function Construction() {
   return (
     <div>
       <Switch>
+        <Route path={`${match.path}/:topicId/:fileid/:filename`}>
+          <App />
+        </Route>
         <Route path={`${match.path}/:topicId/:fileid`}>
           <App />
         </Route>

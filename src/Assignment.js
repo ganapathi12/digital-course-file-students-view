@@ -94,7 +94,7 @@ export default function Assignment() {
       setdocname(doc.data().name); 
       setdocdue(doc.data().date);
       setdocdes(doc.data().desp); 
-      //setdoctoggle(doc.data().toggle);
+      setdoctoggle(doc.data().toggle);
       } 
       else {        
         console.log("No such document!");    
@@ -163,7 +163,7 @@ export default function Assignment() {
               </Step>
             ))}
           </Stepper>
-          { docdue < date && doctoggle ? (
+          { (docdue < date && !(doctoggle)) || (docdue >= date && !(doctoggle)) ? (
           <h2 style={{textAlign:'center', color:'red'}}>No More Submittion Accpected!!</h2>
           ) : (
           <React.Fragment>

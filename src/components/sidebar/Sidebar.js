@@ -5,14 +5,11 @@ import { v4 as uuidV4 } from 'uuid'
 import { database } from '../../fire'
 import Loader from 'react-loader-spinner'
 import { useState, useReducer, useEffect } from 'react'
+import Main from '../main/Main'
 
-const Sidebar = ({ sidebarOpen, closeSidebar ,topicId,fileid}) => {
-  
-  const { childFiles } = useFolder(
-    fileid,
-    topicId
-  )
-  console.log(childFiles)
+const Sidebar = ({ sidebarOpen, closeSidebar, topicId, fileid }) => {
+  const { childFiles } = useFolder(fileid, topicId)
+  //console.log(childFiles)
 
   if (childFiles.length == 0) {
     return (
@@ -56,7 +53,15 @@ const Sidebar = ({ sidebarOpen, closeSidebar ,topicId,fileid}) => {
             {childFiles.map((childFile) => (
               <div className='sidebar__link' key={childFile.uniqueid}>
                 <i className='fa fa-archive'></i>
-                <a href={childFile.url}>{childFile.name}</a>
+                {/* <button
+                  onClick={() => {
+                    // console.log(childFile);
+                    <Main childFile={childFile}></Main>
+                  }}
+                >
+                  {childFile.name}
+                </button> */}
+                <a href={"/"+"folders/"+topicId+"/"+fileid+"/"+childFile.id}>{childFile.name}</a>
               </div>
             ))}
           </div>

@@ -8,7 +8,6 @@ import {
 // import About from './About'
 import Construction from './Construction'
 import Path from './Path1'
-import Home from './Home'
 
 export default function Routes() {
   return (
