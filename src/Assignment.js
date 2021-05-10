@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
+      width: '75%',
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -77,6 +77,7 @@ export default function Assignment() {
   const [docname, setdocname] = React.useState(""); 
   const [docdue, setdocdue] = React.useState("");
   const [docdes, setdocdes] = React.useState("");
+  const [doctoggle, setdoctoggle] = React.useState(true);
   let [vaild, setvaild] = React.useState(true)
   
   const sendDataToParent = (index) => { 
@@ -92,7 +93,9 @@ export default function Assignment() {
     if (doc.exists) {        
       setdocname(doc.data().name); 
       setdocdue(doc.data().date);
-      setdocdes(doc.data().desp); } 
+      setdocdes(doc.data().desp); 
+      //setdoctoggle(doc.data().toggle);
+      } 
       else {        
         console.log("No such document!");    
       }}).catch((error) => {
@@ -123,6 +126,12 @@ export default function Assignment() {
     setActiveStep(activeStep - 1);
   };
 
+  var today = new Date()
+  let date;
+  if(today.getMonth() + 1 < 10)
+    date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.getDate();
+  else
+    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
   return (
     <React.Fragment>
       <CssBaseline />
@@ -138,12 +147,15 @@ export default function Assignment() {
           <Typography component="h1" variant="h4" align="center">
             Assignment Portal for {docname}
           </Typography>
-          <Typography component="h1" variant="h6" align="center">
-            Due: {docdue}
+          <br></br>
+          <Typography component="h1" variant="h6" align="left">
+            <b>Due:</b> {docdue}
           </Typography>
-          <Typography component="h1" variant="h6" align="center">
-            Description: {docdes}
+          <br></br>
+          <Typography component="h1" variant="h6" align="left">
+            <b>Description:</b> {docdes}
           </Typography>
+          
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label) => (
               <Step key={label}>
@@ -151,6 +163,9 @@ export default function Assignment() {
               </Step>
             ))}
           </Stepper>
+          { docdue < date && doctoggle ? (
+          <h2 style={{textAlign:'center', color:'red'}}>No More Submittion Accpected!!</h2>
+          ) : (
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
@@ -185,7 +200,8 @@ export default function Assignment() {
                 </div>
               </React.Fragment>
             )}
-          </React.Fragment>
+          </React.Fragment> )
+          }
         </Paper>
         <Copyright />
       </main>
