@@ -67,7 +67,7 @@ const Main2 = ({ filename }) => {
     console.log(currentFile,"test");
     return <Main3 currentFile={currentFile}></Main3>
   }
-  if(x.includes(".docx")||x.includes(".doc") ){
+  else if(x.includes(".pdf") ){
     return <Main5 currentFile={currentFile}></Main5>
   }
   else{
