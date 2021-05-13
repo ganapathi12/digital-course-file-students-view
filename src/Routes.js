@@ -11,14 +11,14 @@ export default function Routes() {
     <Router>
       <div>
         <Switch>
-          <Route path='/'>
-            <Lander />
-          </Route>
           <Route path='/folders'>
             <Construction />
           </Route>
           <Route path='/assignment'>
             <Path />
+          </Route>
+          <Route path='/'>
+            <Lander />
           </Route>
         </Switch>
       </div>
