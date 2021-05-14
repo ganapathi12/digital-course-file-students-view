@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: '30%',
+      width: '50%',
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
-    paddingRight: '134px',
+    paddingRight: '120px',
     alignItems: 'center',
   },
 }));
