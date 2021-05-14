@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 // import About from './About'
 import Construction from './Construction'
 import Path from './Path1'
+import Path1 from './Path2'
 
 export default function Routes() {
   return (
@@ -15,6 +16,9 @@ export default function Routes() {
           </Route>
           <Route path='/assignment'>
             <Path />
+          </Route>
+          <Route path='/feedback'>
+            <Path1 />
           </Route>
         </Switch>
       </div>
