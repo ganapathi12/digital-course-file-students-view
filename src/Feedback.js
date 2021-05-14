@@ -52,8 +52,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3, 0, 5),
   },
   buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
+    marginTop: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+    paddingRight: 'auto',
+    alignItems: 'center',
   },
   button: {
     marginTop: theme.spacing(3),
@@ -94,6 +96,12 @@ export default function Feedback() {
         alert("Plese Enter all fields!! :-(")
       }
     
+  }
+  function clear(){
+    setq1('')
+    setq2('')
+    setq3('')
+    setq4('')
   }
 
   return (
@@ -155,14 +163,14 @@ export default function Feedback() {
               />
           </Typography>
           <br></br>
-            <Button variant='danger' className={classes.button}>
+            <Button variant='danger' className={classes.button} onClick={clear}>
               Cancel
             </Button>
             <Button
             variant="contained"
             color="primary"
             onClick={handleit}
-            className={classes.button}>
+            className={classes.buttons}>
              <p style={{alignItems:'center'}}>Submit</p>    
             </Button>
             </Form>
