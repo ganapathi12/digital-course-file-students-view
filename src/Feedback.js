@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Feedback() {
   const classes = useStyles();
+  const [name, setname] = React.useState("");
   const [q1, setq1] = React.useState(""); 
   const [q2, setq2] = React.useState("");
   const [q3, setq3] = React.useState("");
@@ -76,11 +77,12 @@ export default function Feedback() {
   let {topicId} = useParams()
   
   function handleit(e){
-      if(q1 && q2&& q3 &&q4){
+      if(q1 && q2 && q3 && q4){
         e.preventDefault()
         database.feedback.add({
           proff_id: topicId,
           createdAt: database.getTime(),
+          name: name,
           q1: q1,
           q2: q2,
           q3: q3,
@@ -90,7 +92,8 @@ export default function Feedback() {
         setq2('')
         setq3('')
         setq4('')
-        alert("Feedback Submittied!! :-)")
+        setname('')
+        alert("Feedback Submitted!! :-)")
       }
       else{
         alert("Plese Enter all fields!! :-(")
@@ -98,6 +101,7 @@ export default function Feedback() {
     
   }
   function clear(){
+    setname('')
     setq1('')
     setq2('')
     setq3('')
@@ -124,7 +128,16 @@ export default function Feedback() {
           <br></br>
           <Form>
           <Typography component="h1" variant="h6" align="center">
-            <b>Q1:Rate the course (1-5)</b>
+            <b>Enter the course name:</b>
+            <br></br>
+            <Form.Control
+                type='text'
+                required
+                value={name}
+                onChange={(e) => setname(e.target.value)} />
+          </Typography>
+          <Typography component="h1" variant="h6" align="center">
+            <b>Q1:Rate the course(1-5)</b>
             <br></br>
             <Form.Control
                 type='number'
