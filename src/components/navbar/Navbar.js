@@ -1,6 +1,13 @@
 import "./Navbar.css";
 import avatar from "../../assets/avatar.svg";
 
+const styles = {
+  marginLeft:'550px',
+  // alignItems:  'right',
+  textDecoration: 'none',
+  // color: 'blue',
+}
+
 const Navbar = ({ sidebarOpen, openSidebar }) => {
   return (
     <nav className="navbar">
@@ -9,9 +16,11 @@ const Navbar = ({ sidebarOpen, openSidebar }) => {
       </div>
       <div className="main__title">
           {/* <div className="main__greeting"> */}
-            <h1>Digital Course File System - Students View</h1>
+          <a href="https://dcfshome.netlify.app" style={{textDecoration: 'none'}} target="_blank"> <h1>Digital Course File System</h1></a>
             {/* <p>Welcome to your admin dashboard</p> */}
           {/* </div> */}
+          <a href="https://dcfshome.netlify.app/#contact" style={styles} target="_blank"><h1>Feedback & Queries</h1></a>
+
         </div>
       {/* <div className="navbar__left">
         <a href="#">Subscribers</a>
