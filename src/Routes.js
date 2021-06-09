@@ -20,6 +20,7 @@ export default function Routes() {
           <Route path='/feedback'>
             <Path1 />
           </Route>
+          <Route exact path="/" render={() => (window.location = "https://dcfshome.netlify.app/")} />
         </Switch>
       </div>
     </Router>
