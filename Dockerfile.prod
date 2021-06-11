@@ -6,6 +6,7 @@ COPY . .
 EXPOSE 3000
 RUN npm run build
 
+
 FROM nginx
 EXPOSE 80
 ENV SKIP_PREFLIGHT_CHECK=true
